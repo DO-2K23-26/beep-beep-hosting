@@ -20,3 +20,5 @@ spec:
         image: {{ .Values.image }}
         ports:
         - containerPort: {{ .Values.service.internalPort | int }}
+      imagePullSecrets:
+      - name: myregistrykey
