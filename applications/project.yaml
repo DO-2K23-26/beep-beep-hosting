@@ -18,6 +18,7 @@ spec:
     warn: true
   sourceRepos:
     - https://gitlab.polytech.umontpellier.fr/beep/helm-deply
+    - https://github.com/Courtcircuits/beep-charts
     - https://charts.external-secrets.io
     - https://helm.traefik.io/traefik
     - https://charts.jetstack.io

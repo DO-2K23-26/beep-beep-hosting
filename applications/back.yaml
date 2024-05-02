@@ -8,7 +8,7 @@ metadata:
 spec:
   destination:
     name: in-cluster
-    namespace: beepfast
+    namespace: beep
   syncPolicy:
     automated:
       prune: true
@@ -16,5 +16,5 @@ spec:
   project: beep
   source:
     path: dev/node-dpl
-    repoURL: https://gitlab.polytech.umontpellier.fr/beep/helm-deply
+    repoURL: https://github.com/Courtcircuits/beep-charts
     targetRevision: helm-tritri
