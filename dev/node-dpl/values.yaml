@@ -1,6 +1,5 @@
 replicaCount: 1
-image: zizi:latest
-appName: hugoponthieu
+image: gitlab.polytech.umontpellier.fr:5050/beep/voice/api:latest
 appURL: back.ve.moreiradj.net
 service:
   internalPort: 80
