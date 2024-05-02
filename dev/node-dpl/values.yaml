@@ -1,6 +1,7 @@
 replicaCount: 1
 image: gitlab.polytech.umontpellier.fr:5050/beep/voice/api:latest
 appURL: back.ve.moreiradj.net
+appName: voice-api
 service:
   internalPort: 80
   externalPort: 80
