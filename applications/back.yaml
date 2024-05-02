@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: beepback
+  namespace: argocd
+  labels:
+    argocd.argoproj.io/instance: argocd
+spec:
+  destination:
+    name: in-cluster
+    namespace: beepfast
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+  project: beep
+  source:
+    path: dev/node-dpl
+    repoURL: https://gitlab.polytech.umontpellier.fr/beep/helm-deply
+    targetRevision: helm-tritri

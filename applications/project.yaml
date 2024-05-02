@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: beep
+  namespace: argocd
+spec:
+  clusterResourceWhitelist:
+  - group: '*'
+    kind: '*'
+  description: Tmtc la chienneté
+  destinations:
+  - namespace: '*'
+    server: '*'
+  namespaceResourceWhitelist:
+  - group: '*'
+    kind: '*'
+  orphanedResources:
+    warn: true
+  sourceRepos:
+    - https://gitlab.polytech.umontpellier.fr/beep/helm-deply
+    - https://charts.external-secrets.io
+    - https://helm.traefik.io/traefik
+    - https://charts.jetstack.io

@@ -1,7 +1,7 @@
 replicaCount: 1
-image: hugo08/ruby-getting-started:22
+image: zizi:latest
 appName: hugoponthieu
-appURL: apptest.hponthieu.com
+appURL: back.ve.moreiradj.net
 service:
   internalPort: 80
   externalPort: 80
