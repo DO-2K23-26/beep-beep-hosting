@@ -1,0 +1,49 @@
+variable "namespaces" {
+  type        = list(string)
+  description = "Namespace to deploy services"
+  default     = ["beep-staging","beep-production"]
+
+}
+
+variable "kubeconfig" {
+  type        = string
+  description = "Path to kubeconfig file"
+}
+
+variable "config-map-name" {
+  type        = string
+  description = "Name of the config map used to store access to services"
+  default     = "beep-services-config"
+}
+
+variable "postgresql_auth_database" {
+  type        = string
+  description = "Database name for postgresql"
+  default     = "beep"
+}
+
+variable "minio_defaultBuckets" {
+  type        = string
+  description = "Default bucket name for minio"
+  default     = "beep"
+}
+
+
+variable "sealed-secrets" {
+  type        = map(map(string))
+  description = "Sealed secrets for staging and production"
+  default = {
+    beep-staging = {
+      postgresql-secret     = "AgAli1xx0oClQFCyTaoxeOA0F7HFt8Zz6++obcqE5dfCByahDKZknBBZ2uk8xWhor6ggmNegjlRyXRbCa6giUcigMLjKq6s/uYdjgIjc5busTF6iN6OA5UkXwlouo9LesbJgKAivKV9lZt57IkszdgqHCQHuhSTC4z54lWDV8X/14x5+q86ymPQN4aNp339TC5EhyJtYFPOiaQh/8ewv1zA2n5rVcarHMvdBHhRA85V8p2Mt+jrxELsXM8cQllgmOt+JelkE0cKwcY2i/kmyyZdRr/41NrhmKJafYVmQfABzQKiAjy7yrRoXdm0BBJpdZuC2ruXpzA9ZOALj1B7oHYn/rP9qSEomGx0osdtPTuswpsUBOFvCKXTQ07s8Wd+Xq7DAv2Tf8AEfaTv8jwVpWk+YzfiyPZZkdy4cOelOvInJjdAaQBkUzPw4hON9jJbZ7LBaXuAgUd1aNVkPrcAja4Cl6JFwY0LHZJ2ZV38CUj9HriGEXLhy7BOONn1EWCbm2TDPBmLhxHYwxVzhf0Z0taMFBOMN1+L/B+OMRo/dgCIiHdtEe2U+5Wt5T97e3uyRt76lY2bmqvtPTWVZBD3f1VXvDIsXymqZMg45rj3w6tRgSkrM6l3b4ri8Uh+nQP/5VBmi3ISPT+9M8D7oSU5l7JGls8hQ+104T9U/89SETIUtgrqqLOa4tiQJz7z2UzkHOZfHG89zHCF3O+MjNWhU5BnPe/m1rJY="
+      minio-secret-user     = "AgCZGptP5R6I0jcrfWdvphKEgqgmKg1XDTyPbsV8zkQAxSwFWFCGS353M6i+K/aPi20iT9us77NeJEktKUeDaQ9YRAsdvvUXKlDmRJxZHNoL9yMbvI/j0n3O7gR7CU5GiYe/KIKmarDlmPGWPBQ8m3hnhdbAZvcgYbIUWX8pVZGbUYPrdVwhlDvRinzsBm4yVFd0sv7oWf+kxJCeI4EzLWmCwshbsMwByn3wrj/dTKzkJeGtsE3yFdHP3ZGMrwMSQcnExhIzycWhk+8VkfH3620w066mDHuYUJSiiL3Od6KGcLUeh5jarfK2cB6pMjP5NUqhKKMAWWkNNbXlCrnLiT/4di1f1YGkZBE1HGfLxGLA0vtjpSkqIpDK0EQgMr9Tz999JA5E14bMIzCFjYV2upJgnD6AuxE4UwyiGfdbI8sb2q70lNCcqfm9fQrFKddlxEyPU38wZ7pw9MdKRfrbO8035UIA9rywS8cdiX/zhbqw0FdRGwwY9dVxNk+G4X+pFS04omDrdXqUDOvYA0pfxpUQHNRSaXJCDZu9LmylYMGOK88zizq0MBS0NeJERCXkpQOUs2EztPEDBhGMb23nXeZEiTAtjwrhI+UROUnd/vmsJcIwIRUj51zDxkj3L2Z2GNNGNQuAHs2Pu996z5W+SWUNb4iV3Vzs5jXTbJvJtB6FfoNOXUEJS0kPyEhD/sxXmbNXmrVxUPLQDRQc4w=="
+      minio-secret-password = "AgBRXjuztA57uikSclLKgWoBZioAhTSXXYHlXgiPF/cbKBKQRcdZeNzVs1iinwJUAgTEnCwrt9+ixnyvnHhwzGs+KAMjaNSQ+scln5t6GMBdeGltqUeyEROC0CBKzkWDMHarPgTljbktgZibiqSv1DCMqzd8DFVZg9CjfZ+XWgeA3I8dPbiiotqhxVia9IKXsYdeysWNOOPyDwyt8IBxZl9ZdPI1/9LwEbYekpgEXvPynWPk0oZYkk6T4mAeO+Oa4f5wfFEcGTYfquTntNfKP9Cq5wyU7RW+JxzQ9jclSJQrPzQYlxlMZHV4utRTycGuWyEXqMOySIoqlrSwK992QWukghrNqUpLtlz9VyRInJuN8Cq2U1CeYQolrHVb76X0lbBX9xgkuincHCXlHPRKiMX8Rvt+aFKOOL5bOXSuP1xumrRdP3bJJY1DI/CIiqovZIckG5RZCKvUqrSFj43hehNS4P13Ii+sInO91K7Fy9tcTSx94U2U7NK3HOmWJG/VaIrQHtMPlTtKGJ1L7NZUc/qHNkf4ItaRWnCRIYFPxqUWcVVs3jol4IvmjeQW4dZ6qYi/TLP8EGT4j1wNlrexD8Z9Nbj+OKyMv8uIcm0pCQtiqs0u2q/IyXZBSz9o8zEG7G6LzGltjJSQJR0BcjK0w2zRxwsfgX7TTkUS8r6CJGV/QKDueUZqXFk2BVQHt2Kz84UX33XlFimVjGiaq2zU18IlKMXOaGY="
+      redis-secret          = "AgAlLkG05/95ZOxLZDfwhd2ynfF5ZZFE3jxye1pQjiAqp9D7tTS/LZ2Bm5+lBf+UuX+JBK+PaTCU6oyg0VfDF715uKSUahgLuIPikH9mqEZ3X9jwwdoZBiny7uLz+PjeQUkYUrv2xZTR7hhIZ7JOispPpDIhQDt3evqvo/wr5iKCO8i/UuE+bGt05Zjt1riMnCvpnVsk+hkROih0p6wrwkQlwMhJaioYJobkGlxkA33lz+qXcHiclh5bVGZN8sasbCkjMvXBkX3pt+wKpYxcFnyjeiH2GPUWecQMsDWrDYQEzhuWB/pYgEH3SX+rlYRyx8CES8av5ulIDcBUwglt7qj0jfQ+jp83i+1GT/cJMb7K4/r1a5hC6ZlmW//jPo2aYefjWC+yLZsYcPWd8r6JqWiaiN8E9Xels9Ot+1XkjBaDYKHXAGUJAI2t+A4zEbIr5F2dgQyCfCK8ksM9RQYyAysPQb9dMOxTiDSNIUpQXYhYzq3UEEujCk9Gkn4T3MOaOJo1IEcRlUbs14T2ujSwQJF6sSZIEQkBCgcACT2cVoN0rLWAmcf2kiQIoFJNdrf2IXZ7nzGRymzsyv23tbPAy9B/y5kfJ4SyLuJhhpyXQeC5bW7siVJO1I/n+MukBUEFf9iTqSLSjAIvBzH7I1t/9cNDkqwdiQQuy9qe3Oz3ebcX6GX4pSfIcUOoLWT3P14djmKL7W4eFe0Q2YHsD4oNDQ1OZCEcRQ=="
+    }
+    beep-production = {
+      postgresql-secret     = "AgB+R/jB5QnSRLoqHYdz3VtixiD7LM90kN3PQP0d4JIOLuoqUfG1yEtS6s3CzlwZbrrNrP9viYqfYCkrRyMj67IGBjsBr0YVuroQ+i+BWxGdNwcBNPIh331oQR9IPBgN1qoneuuipclvvrAeX2OHoLa3tHIQ6C7tkm9rv8IW5sI9R+1PQ7qotWFuROmncZ/lZ9q7h21twtSiEoUPcAn1YcAJvMx5HDDufjxGdwbWTUowRhc7Y6qxyEkcIGoQ/DoFz+lM61I+h/wgXNNp9Yz7KZRKv43+9nfDG+AAvRdZhManrHWcXerRkYKSv5tt6tOoGNkJd7YzcHwZBBtaSGFpnGkrIgOat/ZE5tiM1MtVL6gNp6X2SHpe5XQlRHaPjzi5gH9a49xWI/j7+IRfCxfHaWiqdIEOTr9ZCiTooUaQJnmFO6JbyiqaHk1me5qnGn/fIj/Ds2VTZIMbiF6z9veGDVg8EQ+pF4UfZh7dtnNFE5CFems8r2AseAJZUybrzDOmmFHNnur9oxzcULW64C+rBJ22BCtGhdFYapuFheeHuWO8u04Lrp4MaOc7xkWZ1ZaP+IXCMuaXgMreu36kkFUotJsL7MelDlImgb7RHyZwHromtQAT4pgWZj0QCVRBmxUw2gbhpCC9/sECMyra49b/6LuNnx66kX4ITz9+yWkAxh47c6D5fEQtDhGPJ2a/uJAcd6xYrZPKFxgCM04NcUC2Nz2Di4svFQ=="
+      minio-secret-user     = "AgBtLiBR5RQVQkeBMzVJUUSnlVlkz8UEYWjR7amwyAUK4WhQ3zm9CPn3lkerZowQMEX2Lm+lQ+sQQND9VhHlweUpKZRb23qsjOIQMIlhy+04yz5GYaMfa+8+xBpkCjhXcw+JceWHX/i0X0jECtgyMwCoAolcdPYbtl/Y/I6CNJa/2CSnC3jhwvah+Oi6mQ/kcs9jqoUKQO8kmM6rm0jvYoBd9xbDWFg9zUr46Ku8p/T7bt+p3Be9BmosvNpVH0CRikuAPRQf0V1btJLtUlIz1RQW9oODcHbwx8nVMhtnjnHqNAuj/yYNZeC6CYsPqWLzkOUupCINhv8eV+jqCQVsRJA1ILIDSnFGNAHgJral2zy0qb0An6RKNMdz0xIBPYx6zZc7kaT9d5bJOeo2R4qyXLfFIhzT65wJhGq+2YGVyrsHiUGcaQYIn1p3h/Ow0UZQxlbzSpJuGAJVGxHgzeyNw46x4zDcY/KH4iPzj3ZAj2L1k3LAyUkOVxRkYvNvM+wsZmY+weqXgIGRySrzK6nxD/Z3ZVirf+rMEseuQETzVk7EZLelI1Z8YDAqzOf30rpNKpVpW4baqBs5L73/WHfd0S9klAq/Sjz4gqBIPNfrnC5PQFEyIQzn9VR5eCh48wqRK9ppQJB987i5DctOn+wpxn0gwYHu4RReIUvgo3NKCcguR/CuzbpydcwVmz8402Aqy7PSlBeTAfoHoIainA=="
+      minio-secret-password = "AgAkIQpv3rvPBEZv3AvntmUShe0XYSJwSCS5qxy8F+rxc1a6GArk4LD7CPHcz/L/NwudA/vvP6ls0/bJWIDIcQFnZQc6bZuzUWz3h8DeE/jEvwSpfdIQY1GZ5Zl81EF1Xka9okjTtmWaBCahobVYyIoL1o57jUQTGhDLyO51glPR6djD/29RQOQ3EAeEI6ajRUVQOVv7adKmuQF/vvSCBUpcALPTFy38mZwC7CBRTEVnHDC7lXXhDacMdIrsrYjnCkQlV+OMAsKr22rJ+zXNZFmP+Lo94tADp/k7pdBhvz3mR5hmxOuHOkd40GlTZYPUzb2aJrB4K/lx7ndHfmIjKY1Bj8KqF3tk2Kbn9sSvgXqaeXGBxtfV7143hEIekzCcPaTxIqA7O2cZSjX4RuOijmXf09MMVY4pbo3fPZsnSXbzgUJ/lOXv5E/dtd8InQnSeoBwx7GGYBKH4pO+DYQq6TNsn4qReBKzIcQcY5e4dwHjUxJyvqPnj3TSh1frnQDdzUk1qquDDPMtf9Sli2IGKUKSDInNEROGYVcYCR03YbqirqaDoFilqs/DysAidbhNm+cT+osMtMhV4QVHShhqBsBM3BniudsqtCaXfFFU6U5Tlu0i5C0Lz4bhmWxeEQw45ayhUMLc8nGbZoR2/h8aVU8vzUxzf7UfmH4KLwUNwCNLm1X7I0w/llPKIq1bp/6h8mVt+orUPnMmxRuMqyanPPlHn1dZgQ=="
+      redis-secret          = "AgA+4izyqX45muIOKxVSlsFqCM9aK+oCvSDUgyza19QFID5VM79qXivb84VKAW3GXnAUrMOSCiqqegZFJDlwyGGGU9KanbIbx3xc/0vHDODNeCv5/FoDBby6eHOpRtl6GA92LgKJgMjRCSX4WkHKV+pLCPsoE8dJemCp818see9XfTYcDVgqT5f+UPuOQAo6cdai4rn+Y0w0svcIs+faOxEWvYx+HnBACkg++bNw02utuLi0xqCAwqt95SWnQEwzwGTL32kFic/ngKja7Ib1rL9GmmeHmnt4MJhRx6etsbf5hC8v/ZnTUIK6ia3SQ4KsTgf/6n7LKhwDuO2Uj7PSZ+w+NmhLwUIAIz4IJKo02waqbaN7PePfw/UUSrTn8i3Xr3nEn70NZKT8eLzk1Z5R422U3decQ6n62wXR4NYIiYymIkljDOu9Gf5Ek5RdCfvXFi1RcKP9wTWs6hqRm/auh20YeR1PDoYclHhltwnC2xBFul7HUTBfzL3AfAmtdLXYLEf22lYid67TH+AQ7fiFgjU6RMVUNEZxLOoq0KW9DcFFQTnThur+5UjRq3vPFmSNH2r17JOarwm6rIU2SOdpWxUmjP6VugPBr6qomFohFPSSUzj7/Hg3B92EEB8LY4a+QRFzbNlgMn9B+f4oMkRlr9uSk+dsAktTRm20aFww+p/3mB52U5oqEi8XKFqqPW3LRXa0JV+Pg+S0VhREaQUnFCaHnFpTWQ=="
+    }
+  }
+}
