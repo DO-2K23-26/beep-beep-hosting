@@ -1,0 +1,47 @@
+stages:
+  - plan
+  - apply
+  - destroy
+
+image:
+  name: hashicorp/terraform:light
+
+variables:
+  TF_HTTP_ADDRESS: "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/terraform/state/default"
+  TF_USERNAME: $TF_USERNAME
+  TF_PASSWORD: $TF_PASSWORD
+
+before_script:
+  - terraform --version
+  - |
+    terraform init \
+    -reconfigure \
+    -backend-config=address=${TF_HTTP_ADDRESS} \
+    -backend-config=lock_address=${TF_HTTP_ADDRESS}/lock \
+    -backend-config=unlock_address=${TF_HTTP_ADDRESS}/lock \
+    -backend-config=username=${TF_USERNAME} \
+    -backend-config=password=${TF_PASSWORD} \
+    -backend-config=lock_method=POST \
+    -backend-config=unlock_method=DELETE \
+    -backend-config=retry_wait_min=5
+    
+plan:
+  stage: plan
+  script:
+    - terraform show
+    - terraform plan  -var kubeconfig=${KUBECONFIG}
+
+apply:
+  stage: apply
+  dependencies:
+    - plan
+  script:
+    - terraform apply -auto-approve -var kubeconfig=${KUBECONFIG}
+  when: manual
+
+destroy:
+  stage: destroy
+  script:
+    - terraform destroy -auto-approve -var kubeconfig=${KUBECONFIG}
+  when: manual
+  

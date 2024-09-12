@@ -1,5 +1,19 @@
 # Beep Hosting
 
+## Generating a secret from env file
+
+Content of the .env file: 
+```.env
+postgres-password="cKKt916n/(5Knr1£$'v"
+```
+To generate a secret from this file:
+
+```bash
+kubectl create secret generic secret --from-env-file=./.env --dry-run=client -o yaml > secret.yaml
+```
+
+And you should have a correctly generated secret. 
+
 ## Generating and deploying sealed secret
 
 You can quite simply install CRD's and bin following that [repo](https://github.com/bitnami-labs/sealed-secrets).
@@ -13,7 +27,7 @@ metadata:
   name: pg-secret
 type: Opaque
 data:
-  pg-admin-password: c2VjdXJlLXBhc3N3b3JkCg==
+  postgres-password: c2VjdXJlLXBhc3N3b3JkCg==
 ```
 
 For the next step you must have access to the namespace you want to deploy your sealed secret.
