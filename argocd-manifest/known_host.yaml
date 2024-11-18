@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  labels:
+    app.kubernetes.io/name: argocd-ssh-known-hosts-polytech
+    app.kubernetes.io/part-of: argocd
+  name: argocd-ssh-known-hosts-polytech
+data:
+  ssh_known_hosts: |
+    gitlab.polytech.umontpellier.fr ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDA73kfeoJ9JdKb0UnWAWYpQoIQDQpJAmZoDwvAdKzlD/EJligznEAMEWnItJr2kHI7eUpgXMRtkRG93EAQgbdShmiFiPwG89xDferb2NVZDmGYPKubvDtSdRPq2Dy2u5rMU6L3TXoZa6C7ASDp+8rXyRveAn2uaIG0+swg0JVFekWEs+lxSmm7I6+klDsvhbrWl5v6+GdA5tbWq/j2Wxby0NnHb/9LtDiekDnynwe17eSeaL1mdYFYztvxx7XLL22EsYUiu5tZaxhmI+deLgTVPMZQeOBoKW6bzvHgx5MtAnT18pNMIppT8uvGx4xWVRTRDpQQ9ACpEg5orImpyql1
+    gitlab.polytech.umontpellier.fr ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBLdTyDhj8idM5LvRVraa3Hcy877xd8T8q0xDzIYI+GdEbKOc+eN4Gqf9QlrKqfSHNo4ydzM8Wwoah+xehGUrYrM=
+    gitlab.polytech.umontpellier.fr ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBwrfX+ORYpnJXbL147VngSjRh581nL2pC5acEC9p9Zz
