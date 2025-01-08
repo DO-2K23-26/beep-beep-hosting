@@ -24,6 +24,11 @@ resource "helm_release" "postgresql" {
     name  = "auth.database"
     value = var.postgresql_auth_database
   }
+
+  set {
+    name  = "primary.resourcesPreset"
+    value = "large"
+  }
 }
 
 resource "helm_release" "redis" {
