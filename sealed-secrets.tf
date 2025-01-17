@@ -76,3 +76,30 @@ resource "kubernetes_manifest" "redis-secret" {
     }
   }
 }
+
+resource "kubernetes_manifest" "harbor-secret" {
+  for_each   = toset((var.namespaces))
+  depends_on = [kubernetes_namespace.namespaces]
+
+  manifest = {
+    "apiVersion" = "bitnami.com/v1alpha1"
+    "kind"       = "SealedSecret"
+    "metadata" = {
+      "name"      = "harbor-registry"
+      "namespace" = each.key
+    }
+    "spec" = {
+      "encryptedData" = {
+        ".dockerconfigjson" = var.sealed-secrets[each.key].harbor-secret
+      }
+      "template" = {
+        "metadata" = {
+          "name"      = "harbor-registry"
+          "namespace" = each.key
+        }
+        "type" = "kubernetes.io/dockerconfigjson"
+      }
+    }
+  }
+
+}
